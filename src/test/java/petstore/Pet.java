@@ -3,7 +3,7 @@ package petstore;
 
 // 2 - Bibliotecas
 
-// 3 - Casse
+
 
 import org.testng.annotations.Test;
 
@@ -12,6 +12,9 @@ import java.nio.file.Files;
 import java.nio.file.Paths;
 
 import static io.restassured.RestAssured.given;
+import static org.hamcrest.CoreMatchers.is;
+
+// 3 - classe
 
 public class Pet {
     // 3.1 - Atributos
@@ -32,6 +35,7 @@ public void incluirPet() throws IOException {
     // Sintaxe Gherkin
     // Dado - Quando - Então
     // Given -When - Then
+
         given()// Dado
                 .contentType("application/json") // comum em API RESET - "antigos era txt/xml"
                 .log().all()
@@ -41,6 +45,9 @@ public void incluirPet() throws IOException {
                 .then() // Então
                 .log().all()
                 .statusCode(200)
+                .body("name", is ("Nina"))
+
+                .body("status", is("available"))
         ;
 
 
